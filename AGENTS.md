@@ -42,8 +42,11 @@ This is a static professional portfolio website for Warren Victor, deployed to G
 ```
 index.html          — Main portfolio page
 404.html            — Custom error page
-assets/css/         — Stylesheets
-assets/js/          — Scripts
-assets/img/         — Images
+assets/css/         — Stylesheets (main.min.css, styles.css, input.css)
+assets/js/          — Scripts (main.js)
+assets/img/         — Images (warren-victor-headshot.webp, og-image.jpg)
+assets/Warren-Victor-CV.pdf — Sanitized CV PDF for download
 references/         — Source files (git-ignored)
+CHANGELOG.md        — Release notes & version history (v1.0.0)
+README.md           — Project documentation & build instructions
 ```
