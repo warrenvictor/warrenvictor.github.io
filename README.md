@@ -54,7 +54,7 @@ npx -y tailwindcss@3 -i ./assets/css/input.css -o ./assets/css/tailwind.min.css 
 
 ## TODO Checklist
 
-- [ ] Supply `assets/Warren-Victor-CV.pdf` (with mobile number removed)
+- [x] Supply `assets/Warren-Victor-CV.pdf` (with mobile number removed)
 - [x] Populate Featured Projects & Platforms section with live Firebase web apps and managed portals
 - [x] Review and complete content audit (Phase 2 & Phase 3)
 - [x] Replace Tailwind CDN with compiled CSS (Phase 4)
