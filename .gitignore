@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# References (contains personal info — never deploy)
+references/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build artifacts
+dist/
+.cache/
+lighthouse*.json
+
+# Environment files
+.env
+.env.local
+.env.*.local
