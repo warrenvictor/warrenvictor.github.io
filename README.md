@@ -61,6 +61,24 @@ npx -y tailwindcss@3 -i ./assets/css/input.css -o ./assets/css/tailwind.min.css 
 - [x] Run Lighthouse audit and fix issues (Phase 4 — 91+ Performance, 100 Accessibility, 100 Best Practices, 100 SEO)
 - [ ] Deploy to GitHub Pages (Phase 5)
 
+## Deployment (GitHub Pages)
+
+This site is designed to deploy automatically as a GitHub Pages user site:
+
+1. **Create the repository on GitHub:**
+   - Go to [github.com/new](https://github.com/new)
+   - Repository name: `warrenvictor.github.io`
+   - Set to **Public**
+   - Leave "Initialize with README" **unchecked**
+
+2. **Push from local terminal:**
+   ```bash
+   git push -u origin main
+   ```
+
+3. **Verify deployment:**
+   - GitHub Pages will automatically build and publish the root of `main` at `https://warrenvictor.github.io`.
+
 ## Privacy
 
 ⚠️ The `references/` directory is git-ignored and must **never** be committed. It contains a PDF with a personal mobile number that should not be published.
