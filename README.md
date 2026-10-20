@@ -59,7 +59,7 @@ npx -y tailwindcss@3 -i ./assets/css/input.css -o ./assets/css/tailwind.min.css 
 - [x] Review and complete content audit (Phase 2 & Phase 3)
 - [x] Replace Tailwind CDN with compiled CSS (Phase 4)
 - [x] Run Lighthouse audit and fix issues (Phase 4 — 91+ Performance, 100 Accessibility, 100 Best Practices, 100 SEO)
-- [ ] Deploy to GitHub Pages (Phase 5)
+- [x] Deploy to GitHub Pages (Phase 5)
 
 ## Deployment (GitHub Pages)
 
