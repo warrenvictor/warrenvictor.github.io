@@ -5,6 +5,13 @@ All notable changes to the **Warren Victor Portfolio** (`warrenvictor.github.io`
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.5] — 2026-10-23
+
+### 📱 Mobile Display Photo Framing Patch
+- **Forehead Cropping Resolved:** Adjusted mobile `.hero-avatar-frame .hero-photo-img` framing with top alignment (`object-position: 50% 0%`), natural scale (`scale(1.02)`), and vertical headroom offset (`translateY(10%)`), ensuring Warren's full forehead and hair remain uncropped and centered inside the mobile halo ring.
+
+---
+
 ## [1.1.4] — 2026-10-23
 
 ### 🌟 Animated Hero Starfield

@@ -1123,8 +1123,9 @@ footer#contact:hover .footer-logo-watermark {
         height: 100%;
         max-height: none !important;
         object-fit: cover;
-        object-position: 50% 8%;
-        transform: scale(1.18);
+        object-position: 50% 0%;
+        transform-origin: 50% 0%;
+        transform: translateY(10%) scale(1.02);
         filter: drop-shadow(0 10px 20px rgba(7, 21, 38, 0.6));
         transition: none;
     }
