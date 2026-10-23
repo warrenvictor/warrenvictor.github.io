@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Theme: Deep Sapphire Glassmorphism (v1.0.0 Default)
+   Snippet for <style> block in 404.html
+   ========================================================================== */
+
+:root {
+    --color-bg-primary: #0f172a;
+    --color-bg-secondary: #1e3a8a;
+    --color-brand: #0ea5e9;
+    --color-brand-dark: #0369a1;
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #94a3b8;
+    --color-glass-bg: rgba(255, 255, 255, 0.05);
+    --color-glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 50%, var(--color-bg-primary) 100%);
+    background-attachment: fixed;
+    color: var(--color-text-primary);
+}

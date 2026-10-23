@@ -1,9 +1,18 @@
-# Warren Victor — Professional Portfolio (v1.0.0)
+# Warren Victor — Professional Portfolio (v1.1.0)
 
 > **Live Production Site:** [warrenvictor.github.io](https://warrenvictor.github.io)  
 > **Repository:** [github.com/warrenvictor/warrenvictor.github.io](https://github.com/warrenvictor/warrenvictor.github.io)
 
-A modern, fast, and accessible static portfolio website for **Warren Victor** — Library Professional, Graphic Designer, and Adobe Creative Educator based in Cainta, Rizal, Philippines.
+A modern, fast, and accessible static portfolio website for **Warren Victor** — Library Professional, Digital Experience Designer, and Adobe Creative Educator based in Cainta, Rizal, Philippines.
+
+---
+
+## 🌟 Key Architectural Features (v1.1.0)
+
+- **Dynamic Ambient Hero Canvas:** Deep sapphire flowing gradient (`#071526` → `#153359` → `#0a1b32`) with an architectural 3-column layout (Headline & CTAs left, centered portrait cutout, 4 Frosted Sapphire glass competency cards right).
+- **Upward Curved Horizon Divider:** A custom SVG bezier divider (`.hero-horizon-divider`) that arches beneath the hero portrait, seamlessly connecting the dark hero canvas to the clean white About section with zero hard cuts.
+- **Scroll Glide Parallax:** Performance-optimized `requestAnimationFrame` scroll parallax on the portrait with an interactive scroll indicator, strictly respecting `prefers-reduced-motion`.
+- **Editorial Typography Scale:** Playfair Display (headings) paired with Inter (body), featuring an `.editorial-lead` paragraph style, left-aligned typographic rhythm, and strict 8px grid compliance.
 
 ---
 
@@ -52,7 +61,15 @@ warrenvictor.github.io/
 │       ├── warren-victor-headshot.webp  # High-efficiency WebP headshot (21.8 KB)
 │       ├── warren-victor-headshot.png   # PNG fallback image
 │       └── og-image.jpg                 # Open Graph social sharing card
+├── themes/                     # Preserved theme presets library
+│   ├── active-theme.json       # Active theme tracking file
+│   └── theme-sapphire-glass/   # PRESERVED v1.0.0 Default Theme
+├── scripts/                    # Build & theme management tools
+│   ├── switch-theme.py         # Python theme switcher & preservation tool
+│   ├── switch-theme.js         # Node.js theme switcher & preservation tool
+│   └── build-css.py            # Automated stylesheet minifier and bundler
 ├── references/                 # Source reference material (git-ignored, never committed)
+├── THEMES.md                   # Master theme design tokens & switching guide
 ├── README.md                   # Project documentation
 ├── CHANGELOG.md                # Release version history
 ├── AGENTS.md                   # AI pair-programming rules & constraints
@@ -81,13 +98,31 @@ GitHub Pages automatically deploys the update within 30–60 seconds.
 npx -y tailwindcss@3 -i ./assets/css/input.css -o ./assets/css/tailwind.min.css --minify
 
 # Merge into production stylesheet
-python -c "open('assets/css/main.min.css','w',encoding='utf-8').write(open('assets/css/tailwind.min.css',encoding='utf-8').read() + '\n' + open('assets/css/styles.min.css',encoding='utf-8').read())"
+python scripts/build-css.py
 
 # Commit and push
 git add .
 git commit -m "Style updates"
 git push
 ```
+
+### 3. Theme Preservation & Switching
+The original design is permanently preserved as **Deep Sapphire Glassmorphism** in `themes/theme-sapphire-glass/`.
+
+To manage themes in your code editor terminal:
+```bash
+# List all themes and check active status
+python scripts/switch-theme.py list
+
+# Revert to the original Deep Sapphire Glass theme anytime
+python scripts/switch-theme.py apply sapphire-glass
+
+# Save a new theme you created
+python scripts/switch-theme.py save <new-theme-name> "Description"
+```
+*(Node.js users can equivalently use `node scripts/switch-theme.js`).*
+
+See [THEMES.md](THEMES.md) for full design tokens, color swatches, and zero-terminal manual steps.
 
 ---
 

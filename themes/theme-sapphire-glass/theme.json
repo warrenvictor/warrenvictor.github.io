@@ -1,0 +1,45 @@
+{
+  "id": "theme-sapphire-glass",
+  "name": "Deep Sapphire Glassmorphism",
+  "version": "1.0.0",
+  "status": "preserved-default",
+  "description": "Warren Victor Portfolio v1.0.0 production theme. A modern, dark glassmorphism design system featuring deep navy gradients, frosted glass cards with subtle borders, and vibrant sky-blue accents.",
+  "author": "Warren Victor",
+  "created": "2026-10-20",
+  "colors": {
+    "bgPrimary": "#0f172a",
+    "bgSecondary": "#1e3a8a",
+    "textPrimary": "#f8fafc",
+    "textSecondary": "#94a3b8",
+    "textMuted": "#64748b",
+    "brandDefault": "#0ea5e9",
+    "brandDark": "#0369a1",
+    "brandLight": "#e0f2fe",
+    "behance": "#1769ff",
+    "glassBg": "rgba(255, 255, 255, 0.05)",
+    "glassBorder": "rgba(255, 255, 255, 0.1)",
+    "glassHover": "rgba(255, 255, 255, 0.1)",
+    "mobileMenuBg": "rgba(15, 23, 42, 0.95)",
+    "scrollbarThumb": "#334155",
+    "scrollbarThumbHover": "#475569"
+  },
+  "background": {
+    "gradient": "linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%)",
+    "attachment": "fixed"
+  },
+  "glass": {
+    "backdropFilter": "blur(12px)",
+    "webkitBackdropFilter": "blur(12px)",
+    "border": "1px solid rgba(255, 255, 255, 0.1)",
+    "boxShadow": "0 4px 30px rgba(0, 0, 0, 0.1)"
+  },
+  "typography": {
+    "serif": "'Playfair Display', serif",
+    "sans": "'Inter', sans-serif",
+    "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+  },
+  "meta": {
+    "themeColor": "#0f172a",
+    "favicon": "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f172a' stroke='%230ea5e9' stroke-width='4'/%3E%3Ctext x='50' y='68' font-family='Times New Roman, serif' font-size='56' font-style='italic' fill='%23ffffff' text-anchor='middle'%3Ewv%3C/text%3E%3C/svg%3E"
+  }
+}

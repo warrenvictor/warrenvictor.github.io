@@ -1,6 +1,6 @@
 /* ==========================================================================
    Warren Victor Portfolio — Main Stylesheet
-   Design System: Dark gradient + glassmorphism + sky-blue accent
+   Theme: Navy-Blue & Clean White (Editorial Dual-Tone Design System)
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -8,21 +8,47 @@
    Using 8px grid system for spacing
    -------------------------------------------------------------------------- */
 :root {
-    /* Colors */
-    --color-bg-primary: #0f172a;
-    --color-bg-secondary: #1e3a8a;
-    --color-text-primary: #f8fafc;
-    --color-text-secondary: #94a3b8;
+    /* Colors — Navy Blue Theme */
+    --color-navy: #153359;
+    --color-navy-dark: #0d223c;
+    --color-navy-light: #1e467a;
+    --color-navy-surface: rgba(21, 51, 89, 0.05);
+    --color-white: #ffffff;
+    --color-white-off: #f8fafc;
+    
+    /* Semantic aliases */
+    --color-bg-primary: #153359;
+    --color-bg-secondary: #0d223c;
+    --color-text-primary: #0f172a;
+    --color-text-secondary: #334155;
     --color-text-muted: #64748b;
+    --color-text-on-navy: #ffffff;
+    --color-text-on-navy-muted: #cbd5e1;
     --color-brand: #0ea5e9;
-    --color-brand-dark: #0369a1;
+    --color-brand-dark: #0284c7;
     --color-brand-light: #e0f2fe;
     --color-behance: #1769ff;
-    --color-glass-bg: rgba(255, 255, 255, 0.05);
-    --color-glass-border: rgba(255, 255, 255, 0.1);
-    --color-glass-hover: rgba(255, 255, 255, 0.1);
+    
+    /* Glass & Card Tokens */
+    --color-glass-dark: rgba(13, 34, 60, 0.88);
+    --color-glass-border: rgba(255, 255, 255, 0.15);
+    --color-glass-hover: rgba(255, 255, 255, 0.12);
+    --color-card-light: #ffffff;
+    --color-card-light-border: rgba(226, 232, 240, 0.9);
 
-    /* Spacing (8px grid) */
+    /* Hero Text Glow Tokens (Dual-Tone Contrast Enhancement) */
+    --glow-navy-core: #091a30;
+    --glow-navy-mid: rgba(13, 34, 60, 0.92);
+    --glow-navy-ambient: rgba(21, 51, 89, 0.82);
+    --glow-navy-outer: rgba(14, 165, 233, 0.35);
+
+    --glow-white-core: rgba(255, 255, 255, 0.98);
+    --glow-white-mid: rgba(255, 255, 255, 0.88);
+    --glow-white-ambient: rgba(255, 255, 255, 0.72);
+    --glow-white-outer: rgba(224, 242, 254, 0.50);
+    --glow-white-sky: rgba(56, 189, 248, 0.28);
+
+    /* Spacing Grid (8px increments) */
     --space-1: 8px;
     --space-2: 16px;
     --space-3: 24px;
@@ -37,19 +63,39 @@
     --font-serif: 'Playfair Display', serif;
     --font-sans: 'Inter', sans-serif;
 
-    /* Transitions */
+    /* Transitions & Easing */
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-    --transition-fast: 0.3s ease;
-    --transition-medium: 0.5s ease;
+    --ease-in-out-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 0.25s ease;
+    --transition-medium: 0.45s var(--ease-out-expo);
+    --transition-smooth: 0.65s var(--ease-out-expo);
 }
 
 /* --------------------------------------------------------------------------
    Base Styles
    -------------------------------------------------------------------------- */
 body {
-    background: linear-gradient(135deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 50%, var(--color-bg-primary) 100%);
-    background-attachment: fixed;
+    background-color: var(--color-white);
     color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Typography System & Text Hierarchy (8px Grid & Editorial Scale)
+   -------------------------------------------------------------------------- */
+.editorial-lead {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    font-weight: 500;
+    color: #1e293b;
+}
+
+@media (min-width: 768px) {
+    .editorial-lead {
+        font-size: 1.25rem;
+        line-height: 1.75;
+    }
 }
 
 /* --------------------------------------------------------------------------
@@ -60,12 +106,13 @@ body {
     top: -100%;
     left: var(--space-2);
     z-index: 100;
-    background-color: var(--color-brand);
-    color: white;
+    background-color: var(--color-navy);
+    color: var(--color-white);
     padding: var(--space-1) var(--space-2);
     border-radius: 0 0 8px 8px;
-    font-weight: 500;
+    font-weight: 600;
     text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transition: top var(--transition-fast);
 }
 
@@ -83,58 +130,661 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   Glassmorphism Utility
+   Hero Section: Deep Sapphire Navy Canvas with Organic Ambient Flow
+   Subtle, organic 24-second breathing gradient flow
    -------------------------------------------------------------------------- */
-.glass-panel {
-    background: var(--color-glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--color-glass-border);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+@keyframes heroGradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.hero-navy-gradient {
+    position: relative;
+    background: linear-gradient(135deg, #071526 0%, #0d223c 25%, #153359 52%, #1a3f6f 78%, #0a1b32 100%);
+    background-size: 240% 240%;
+    animation: heroGradientFlow 24s ease-in-out infinite;
+    overflow: hidden;
+    color: #ffffff;
+}
+
+/* Ambient radial glow orbs for luxury depth */
+.hero-navy-gradient::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: 20%;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.18) 0%, rgba(21, 51, 89, 0.05) 55%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    filter: blur(50px);
+}
+
+.hero-navy-gradient::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: 8%;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(30, 70, 122, 0.28) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 1;
+    filter: blur(55px);
+}
+
+/* Animated starfield layer (canvas) + CSS-only shooting stars */
+.hero-navy-gradient {
+    --color-star-rgb: 186, 230, 253;
+    --color-star-streak: #ffffff;
+}
+
+.stars {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.shooting-star {
+    position: absolute;
+    z-index: 0;
+    width: 120px;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--color-star-streak), transparent);
+    opacity: 0;
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+.shooting-star-1 {
+    top: 14%;
+    right: 12%;
+    animation: shootingStar 11s linear 3s infinite;
+}
+
+.shooting-star-2 {
+    top: 20%;
+    left: 8%;
+    animation: shootingStar 14s linear 9s infinite;
+}
+
+@keyframes shootingStar {
+    0%, 92% {
+        opacity: 0;
+        transform: translate3d(0, 0, 0) rotate(-27deg);
+    }
+    94% {
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 0;
+        transform: translate3d(-240px, 120px, 0) rotate(-27deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .shooting-star {
+        display: none;
+    }
+}
+
+/* Hero Warren Victor Photo Styling */
+.hero-photo-img {
+    filter: drop-shadow(0 25px 40px rgba(7, 21, 38, 0.70)) drop-shadow(0 0 55px rgba(14, 165, 233, 0.15));
+    transition: transform 0.5s var(--ease-out-expo), filter 0.5s var(--ease-out-expo);
+}
+
+.hero-photo-img:hover {
+    transform: scale(1.02);
+    filter: drop-shadow(0 30px 50px rgba(7, 21, 38, 0.85)) drop-shadow(0 0 70px rgba(14, 165, 233, 0.25));
+}
+
+/* Hero Majestic Name Headline (Pure Internet White #FFFFFF) */
+.hero-name-headline {
+    font-family: var(--font-serif);
+    font-size: 2.75rem;
+    line-height: 1.05;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+    text-shadow: 0 4px 24px rgba(7, 21, 38, 0.5);
+}
+
+@media (min-width: 640px) {
+    .hero-name-headline {
+        font-size: 3.75rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero-name-headline {
+        font-size: 4.5rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .hero-name-headline {
+        font-size: 5.5rem;
+    }
 }
 
 /* --------------------------------------------------------------------------
-   Scroll Animation Classes
+   Competency Glass Cards (Right Column)
+   Frosted Sapphire Glass Cards with glowing icon badges & smooth hover lift
+   -------------------------------------------------------------------------- */
+.competency-glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 4px 20px rgba(7, 21, 38, 0.25);
+    transition: transform 0.35s var(--ease-out-expo),
+                background-color 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s var(--ease-out-expo);
+    cursor: default;
+}
+
+.competency-glass-card:hover,
+.competency-glass-card:focus-visible {
+    transform: translateX(-4px) translateY(-2px);
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(56, 189, 248, 0.45);
+    box-shadow: 0 12px 32px rgba(14, 165, 233, 0.22), 0 0 20px rgba(14, 165, 233, 0.12);
+}
+
+.competency-icon-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(14, 165, 233, 0.14);
+    border: 1px solid rgba(56, 189, 248, 0.30);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.35s var(--ease-out-expo);
+    box-shadow: 0 2px 10px rgba(14, 165, 233, 0.15);
+}
+
+.competency-glass-card:hover .competency-icon-badge,
+.competency-glass-card:focus-visible .competency-icon-badge {
+    transform: scale(1.08);
+    background: rgba(14, 165, 233, 0.25);
+    border-color: rgba(56, 189, 248, 0.6);
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.45);
+}
+
+/* Call To Action Buttons */
+.hero-cta-btn {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s var(--ease-out-expo), background 0.35s ease;
+}
+
+.hero-cta-btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+    box-shadow: 0 14px 40px rgba(14, 165, 233, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.hero-cta-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 16px rgba(7, 21, 38, 0.2);
+    transition: transform 0.35s var(--ease-out-expo), background-color 0.35s ease, border-color 0.35s ease;
+}
+
+.hero-cta-secondary:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* --------------------------------------------------------------------------
+   Hero-to-Content Upward Curved Horizon Divider & Glide Transition
+   Connecting the white section seamlessly upward to Warren's portrait
+   -------------------------------------------------------------------------- */
+.hero-horizon-divider {
+    position: relative;
+    width: 100%;
+    margin-top: -56px;
+    z-index: 20;
+    pointer-events: none;
+    line-height: 0;
+}
+
+@media (min-width: 640px) {
+    .hero-horizon-divider {
+        margin-top: -84px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero-horizon-divider {
+        margin-top: -120px;
+    }
+}
+
+.hero-horizon-divider svg {
+    filter: drop-shadow(0 -10px 24px rgba(7, 21, 38, 0.35));
+}
+
+/* --------------------------------------------------------------------------
+   Back to Top Toggle (Floating Action Button)
+   Appears smoothly on scroll past hero, non-overlapping with floating dock
+   -------------------------------------------------------------------------- */
+.back-to-top-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 28px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(10, 24, 45, 0.90);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: #38bdf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    box-shadow: 0 8px 24px rgba(7, 21, 38, 0.32), 0 0 16px rgba(14, 165, 233, 0.15);
+    cursor: pointer;
+    z-index: 40;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(16px) scale(0.92);
+    transition: opacity 0.35s var(--ease-out-expo),
+                transform 0.35s var(--ease-out-expo),
+                visibility 0.35s,
+                background-color 0.25s ease,
+                border-color 0.25s ease,
+                color 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.back-to-top-btn.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.back-to-top-btn:hover {
+    background: #0ea5e9;
+    color: #ffffff;
+    border-color: #38bdf8;
+    transform: translateY(-3px) scale(1.06);
+    box-shadow: 0 12px 30px rgba(14, 165, 233, 0.45), 0 0 24px rgba(56, 189, 248, 0.35);
+}
+
+.back-to-top-btn:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+.back-to-top-btn:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+    .back-to-top-btn {
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 13px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .back-to-top-btn {
+        transition: opacity 0.2s linear, visibility 0.2s linear !important;
+        transform: none !important;
+    }
+    .back-to-top-btn:hover {
+        transform: none !important;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Footer Architectural Monogram Watermark
+   Subtle embossed luxury brand emblem in footer background
+   -------------------------------------------------------------------------- */
+.footer-logo-watermark {
+    position: absolute;
+    right: -30px;
+    bottom: -30px;
+    width: 420px;
+    height: 420px;
+    max-width: 55vw;
+    max-height: 55vw;
+    opacity: 0.055;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    transform: rotate(-8deg);
+    transition: opacity 0.6s ease, transform 0.6s var(--ease-out-expo);
+}
+
+footer#contact:hover .footer-logo-watermark {
+    opacity: 0.085;
+    transform: rotate(-6deg) scale(1.02);
+}
+
+@media (max-width: 767px) {
+    .footer-logo-watermark {
+        right: -30px;
+        bottom: -20px;
+        width: 240px;
+        height: 240px;
+        opacity: 0.045;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .footer-logo-watermark {
+        transition: none !important;
+        transform: rotate(-8deg) !important;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Floating Social Media Deck (Fixed Bottom Dock with Shrink Effect)
+   -------------------------------------------------------------------------- */
+.floating-deck {
+    position: fixed;
+    bottom: var(--space-3);
+    left: 50%;
+    transform: translateX(-50%) translateZ(0);
+    z-index: 45;
+    transition: bottom 0.4s var(--ease-out-expo), transform 0.4s var(--ease-out-expo);
+    max-width: 95vw;
+}
+
+.floating-deck-inner {
+    background: var(--color-glass-dark);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--color-glass-border);
+    border-radius: 9999px;
+    padding: 10px 22px;
+    box-shadow: 0 12px 36px rgba(10, 24, 45, 0.38), 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.4s var(--ease-out-expo);
+}
+
+.dock-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    position: relative;
+    transition: transform 0.25s ease;
+}
+
+.dock-item:hover {
+    transform: translateY(-2px);
+}
+
+.dock-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    transition: all 0.3s var(--ease-out-expo);
+}
+
+.dock-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #cbd5e1;
+    margin-top: 4px;
+    line-height: 1;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+/* Shrunk state when user scrolls down */
+.floating-deck.is-shrunk {
+    bottom: 16px;
+}
+
+.floating-deck.is-shrunk .floating-deck-inner {
+    padding: 6px 14px;
+    gap: 10px;
+    background: rgba(10, 24, 45, 0.94);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+}
+
+.floating-deck.is-shrunk .dock-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+}
+
+.floating-deck.is-shrunk .dock-label {
+    opacity: 0;
+    max-height: 0;
+    margin-top: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transform: translateY(4px);
+}
+
+/* Tooltip on hover in shrunk mode */
+.floating-deck.is-shrunk .dock-item:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0d223c;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    pointer-events: none;
+    z-index: 50;
+    animation: dockTooltipIn 0.2s ease-out;
+}
+
+@keyframes dockTooltipIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 4px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Alternating Section Styling
+   -------------------------------------------------------------------------- */
+/* Section Light (White Canvas) */
+.section-light {
+    background-color: var(--color-white);
+    color: var(--color-text-primary);
+}
+
+.section-light-alt {
+    background-color: var(--color-white-off);
+    color: var(--color-text-primary);
+}
+
+/* Card Light (Elevated white card with crisp border) */
+.card-light {
+    background: var(--color-card-light);
+    border: 1px solid var(--color-card-light-border);
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04);
+    transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s var(--ease-out-expo), border-color 0.3s ease;
+}
+
+.card-light:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(21, 51, 89, 0.09);
+    border-color: rgba(21, 51, 89, 0.25);
+}
+
+/* Section Dark (Rich Navy Blue Canvas) */
+.section-dark {
+    background: linear-gradient(135deg, var(--color-navy-dark) 0%, var(--color-navy) 60%, #1a3e6d 100%);
+    color: var(--color-text-on-navy);
+}
+
+/* Card Dark (Frosted glass panel with subtle glow) */
+.card-dark {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--color-glass-border);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s var(--ease-out-expo), background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s var(--ease-out-expo);
+}
+
+.card-dark:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(56, 189, 248, 0.4);
+    box-shadow: 0 12px 32px rgba(14, 165, 233, 0.2);
+}
+
+/* Backward-compatible glass-panel utility */
+.glass-panel {
+    background: var(--color-glass-dark);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--color-glass-border);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* --------------------------------------------------------------------------
+   Timeline Styling (Navy Theme)
+   -------------------------------------------------------------------------- */
+.timeline-dot {
+    width: 16px;
+    height: 16px;
+    background-color: var(--color-brand);
+    border-radius: 50%;
+    position: absolute;
+    left: -9px;
+    top: var(--space-3);
+    border: 3px solid var(--color-navy-dark);
+    box-shadow: 0 0 12px rgba(14, 165, 233, 0.6);
+}
+
+.timeline-line {
+    border-left: 2px solid rgba(56, 189, 248, 0.35);
+    position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   Scroll Animations: Glide & Fade Effects
    -------------------------------------------------------------------------- */
 .fade-in-up {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(35px);
     transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+    will-change: opacity, transform;
 }
 
 .fade-in-left {
     opacity: 0;
-    transform: translateX(-40px);
+    transform: translateX(-35px);
     transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+    will-change: opacity, transform;
 }
 
 .fade-in-right {
     opacity: 0;
-    transform: translateX(40px);
+    transform: translateX(35px);
     transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+    will-change: opacity, transform;
 }
 
-/* Class added by JS when element is in viewport */
+.scale-in {
+    opacity: 0;
+    transform: scale(0.94);
+    transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+    will-change: opacity, transform;
+}
+
+/* Class added by JS when element intersects viewport */
 .is-visible {
     opacity: 1;
-    transform: translate(0);
+    transform: translate(0) scale(1);
 }
 
-/* Respect prefers-reduced-motion */
+/* Stagger animation delay utilities */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+
+/* Respect prefers-reduced-motion (Accessibility Rule) */
 @media (prefers-reduced-motion: reduce) {
     .fade-in-up,
     .fade-in-left,
-    .fade-in-right {
-        opacity: 1;
-        transform: none;
-        transition: none;
+    .fade-in-right,
+    .scale-in {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
     }
 
     .is-visible {
-        transition: none;
+        transition: none !important;
     }
 
-    /* Disable all transitions and animations site-wide */
+    .floating-deck,
+    .floating-deck-inner,
+    .dock-icon,
+    .dock-label {
+        transition: none !important;
+    }
+
     *,
     *::before,
     *::after {
@@ -146,26 +796,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   Timeline Styling
-   -------------------------------------------------------------------------- */
-.timeline-dot {
-    width: 16px;
-    height: 16px;
-    background-color: var(--color-brand);
-    border-radius: 50%;
-    position: absolute;
-    left: -8px;
-    top: var(--space-3);
-    border: 3px solid var(--color-bg-secondary);
-}
-
-.timeline-line {
-    border-left: 2px solid var(--color-glass-border);
-    position: relative;
-}
-
-/* --------------------------------------------------------------------------
-   Mobile Menu
+   Mobile Menu Dropdown
    -------------------------------------------------------------------------- */
 .mobile-menu {
     display: none;
@@ -173,9 +804,9 @@ body {
     top: 100%;
     left: 0;
     right: 0;
-    background: rgba(15, 23, 42, 0.95);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(13, 34, 60, 0.98);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     border-bottom: 1px solid var(--color-glass-border);
     padding: var(--space-2) 0;
     opacity: 0;
@@ -192,18 +823,18 @@ body {
 .mobile-menu a {
     display: block;
     padding: var(--space-2) var(--space-3);
-    color: var(--color-text-secondary);
+    color: var(--color-text-on-navy-muted);
     text-decoration: none;
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     font-weight: 500;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
     transition: color var(--transition-fast), background-color var(--transition-fast);
 }
 
 .mobile-menu a:hover,
 .mobile-menu a:focus-visible {
     color: var(--color-brand);
-    background-color: var(--color-glass-bg);
+    background-color: rgba(255, 255, 255, 0.08);
 }
 
 /* --------------------------------------------------------------------------
@@ -215,7 +846,7 @@ body {
     height: 100%;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--color-brand-dark), var(--color-brand));
+    background: linear-gradient(135deg, var(--color-navy-dark), var(--color-navy));
     font-family: var(--font-serif);
     font-size: 4rem;
     font-weight: 700;
@@ -223,11 +854,11 @@ body {
     letter-spacing: 0.05em;
 }
 
-.headshot-img.is-error ~ .headshot-fallback {
+.hero-photo-img.is-error ~ .headshot-fallback {
     display: flex;
 }
 
-.headshot-img.is-error {
+.hero-photo-img.is-error {
     display: none;
 }
 
@@ -239,14 +870,587 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--color-bg-primary);
+    background: #0d223c;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #334155;
+    background: #1e467a;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #475569;
+    background: #0ea5e9;
 }
+
+/* --------------------------------------------------------------------------
+   Mobile-Only Elements Default (Desktop/Tablet: Hidden or Unstyled)
+   -------------------------------------------------------------------------- */
+.hero-cyan-divider {
+    display: none;
+}
+
+.hero-dot-grid {
+    display: none;
+}
+
+.hero-mobile-social {
+    display: none;
+}
+
+/* Eyebrow Pill Badge (Desktop Default: left-aligned, properly padded) */
+.hero-eyebrow-wrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.hero-eyebrow-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.hero-eyebrow-pill span:last-child {
+    font-size: 0.75rem; /* 12px */
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+/* Call To Action Buttons (Desktop Default: side-by-side, left-aligned) */
+.hero-cta-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    width: auto;
+    margin: 0;
+}
+
+.hero-competencies-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+    .hero-competencies-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .competencies-rule-left {
+        display: none !important;
+    }
+
+    #home.hero-navy-gradient {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-end !important;
+        padding-bottom: 0 !important;
+        overflow: visible !important;
+    }
+
+    #home .max-w-7xl {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        width: 100%;
+        margin-bottom: 0 !important;
+    }
+
+    .hero-grid-container {
+        min-height: calc(100vh - 120px) !important;
+        align-items: flex-end !important;
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    .hero-col-content {
+        align-self: center !important;
+        padding-bottom: 56px !important;
+    }
+
+    .hero-col-competencies {
+        align-self: center !important;
+        padding-bottom: 56px !important;
+    }
+
+    .hero-col-portrait {
+        align-self: flex-end !important;
+        display: flex !important;
+        align-items: flex-end !important;
+        justify-content: center !important;
+        margin-bottom: 0 !important;
+        position: relative !important;
+        line-height: 0 !important;
+        z-index: 10 !important;
+    }
+
+    .hero-portrait-wrapper {
+        display: flex !important;
+        align-items: flex-end !important;
+        justify-content: center !important;
+        margin-bottom: 0 !important;
+        transform: translateY(72px) !important;
+        line-height: 0 !important;
+    }
+
+    .hero-avatar-frame {
+        display: flex !important;
+        align-items: flex-end !important;
+        justify-content: center !important;
+        margin-bottom: 0 !important;
+        line-height: 0 !important;
+    }
+
+    .hero-avatar-frame .hero-photo-img {
+        display: block !important;
+        margin-bottom: 0 !important;
+        max-height: 680px !important;
+        line-height: 0 !important;
+    }
+}
+
+@media (min-width: 1280px) {
+    .hero-portrait-wrapper {
+        transform: translateY(84px) !important;
+    }
+
+    .hero-avatar-frame .hero-photo-img {
+        max-height: 740px !important;
+    }
+}
+
+
+/* ==========================================================================
+   Mobile-View Redesign (max-width: 767px)
+   Layout Rhythm, Single-Column Spacing & Visual Hierarchy
+   ========================================================================== */
+@media (max-width: 767px) {
+    /* Navbar Mobile Polish */
+    #navbar {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    #navbar .max-w-7xl {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    #mobile-menu-button {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mobile-menu a {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+
+    /* Hero Canvas Layout & Spacing */
+    .hero-navy-gradient {
+        padding-top: 76px;
+        padding-bottom: 24px;
+        padding-left: 16px;
+        padding-right: 16px;
+        min-height: auto;
+    }
+
+    .hero-grid-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        min-height: auto;
+        padding-bottom: 4px;
+    }
+
+    /* ── 1. Circular Framed Avatar with Luminous Halo ─────────────────────── */
+    .hero-col-portrait {
+        order: 1 !important;
+        width: 100%;
+        margin-bottom: 4px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .hero-portrait-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .hero-avatar-frame {
+        width: 215px;
+        height: 215px;
+        border-radius: 50%;
+        border: 3px solid #38bdf8;
+        box-shadow: 0 0 25px rgba(14, 165, 233, 0.45),
+                    0 0 50px rgba(14, 165, 233, 0.20),
+                    inset 0 0 15px rgba(14, 165, 233, 0.20);
+        background: radial-gradient(circle at 50% 35%, #1d4b82 0%, #0d223c 65%, #071526 100%);
+        overflow: hidden;
+        position: relative;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .hero-avatar-frame .hero-photo-img {
+        width: 100%;
+        height: 100%;
+        max-height: none !important;
+        object-fit: cover;
+        object-position: 50% 8%;
+        transform: scale(1.18);
+        filter: drop-shadow(0 10px 20px rgba(7, 21, 38, 0.6));
+        transition: none;
+    }
+
+    /* Subtle Dot Matrix Accents flanking circular avatar */
+    .hero-dot-grid {
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 32px;
+        height: 44px;
+        background-image: radial-gradient(circle, rgba(56, 189, 248, 0.45) 1.5px, transparent 1.5px);
+        background-size: 11px 11px;
+        pointer-events: none;
+        z-index: 5;
+    }
+
+    .hero-dot-grid-left {
+        left: calc(50% - 146px);
+    }
+
+    .hero-dot-grid-right {
+        right: calc(50% - 146px);
+    }
+
+    /* ── 2. Primary Typography & Value Proposition ───────────────────────── */
+    .hero-col-content {
+        order: 2 !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+
+    /* Name Headline centered directly beneath portrait */
+    .hero-name-headline {
+        order: 1;
+        font-size: 2.5rem;
+        line-height: 1.08;
+        margin-bottom: 12px;
+        text-align: center;
+        text-shadow: 0 4px 20px rgba(7, 21, 38, 0.6);
+        color: #ffffff;
+    }
+
+    /* Eyebrow Pill directly below name */
+    .hero-eyebrow-wrapper {
+        order: 2;
+        justify-content: center;
+        margin-bottom: 0;
+        width: 100%;
+    }
+
+    .hero-eyebrow-pill {
+        border-color: rgba(56, 189, 248, 0.45);
+        background: rgba(255, 255, 255, 0.05);
+        padding: 5px 12px;
+        max-width: 100%;
+    }
+
+    .hero-eyebrow-pill span:last-child {
+        font-size: 0.65rem; /* 10.5px */
+        letter-spacing: 0.05em;
+        white-space: nowrap;
+    }
+
+    /* Cyan Accent Divider */
+    .hero-cyan-divider {
+        order: 3;
+        display: block;
+        width: 36px;
+        height: 3px;
+        background-color: #38bdf8;
+        border-radius: 9999px;
+        margin: 14px auto 14px auto;
+        box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+    }
+
+    /* Value statement headline & readable body */
+    .hero-mission-wrapper {
+        order: 4;
+        margin-top: 0;
+        margin-bottom: 20px;
+        max-width: 340px;
+    }
+
+    .hero-statement-lead {
+        font-size: 1.45rem;
+        line-height: 1.25;
+        margin-bottom: 8px;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .hero-mission-desc {
+        font-size: 1rem; /* 16px minimum readable text */
+        line-height: 1.55;
+        text-align: center;
+        color: #cbd5e1;
+        margin-bottom: 0;
+    }
+
+    /* Stacked Full-Width CTA Buttons */
+    .hero-cta-wrapper {
+        order: 5;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        max-width: 340px;
+        margin: 0 auto;
+    }
+
+    .hero-cta-btn {
+        width: 100%;
+        min-height: 48px;
+        justify-content: center;
+        background: #0ea5e9;
+        color: #071526;
+        font-weight: 700;
+        font-size: 1rem;
+        box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+    }
+
+    .hero-cta-btn i {
+        color: #071526;
+    }
+
+    .hero-cta-secondary {
+        width: 100%;
+        min-height: 48px;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+
+    /* ── 3. Embedded Hero Social Icons Row ───────────────────────────────── */
+    .hero-mobile-social {
+        order: 6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 22px;
+        margin-bottom: 8px;
+        width: 100%;
+    }
+
+    .hero-mobile-social-link {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 15px;
+        transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+        text-decoration: none;
+    }
+
+    .hero-mobile-social-link:hover,
+    .hero-mobile-social-link:active {
+        background: rgba(14, 165, 233, 0.25);
+        border-color: #38bdf8;
+        color: #38bdf8;
+        transform: scale(1.08);
+    }
+
+    /* ── 4. Core Competencies 2x2 Grid ───────────────────────────────────── */
+    .hero-col-competencies {
+        order: 3 !important;
+        width: 100%;
+        padding-top: 8px;
+    }
+
+    .hero-competencies-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+        width: 100% !important;
+    }
+
+    .hero-competencies-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 14px;
+        width: 100%;
+        max-width: 340px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-competencies-header .competencies-rule-left {
+        display: block !important;
+        flex: 1;
+        height: 1px;
+        background-color: rgba(56, 189, 248, 0.35);
+    }
+
+    .hero-competencies-header .w-12 {
+        flex: 1;
+        width: auto !important;
+        height: 1px;
+        background-color: rgba(56, 189, 248, 0.35);
+    }
+
+    .hero-competencies-header span:nth-child(2) {
+        font-size: 0.6875rem; /* 11px */
+        letter-spacing: 0.15em;
+        white-space: nowrap;
+    }
+
+    .competency-glass-card {
+        padding: 10px 8px;
+        gap: 8px;
+        align-items: center;
+        border-radius: 14px;
+    }
+
+    .competency-icon-badge {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+
+    .competency-glass-card h2 {
+        font-size: 0.8125rem; /* 13px */
+        line-height: 1.2;
+    }
+
+    .competency-glass-card p {
+        font-size: 0.6875rem; /* 11px */
+        margin-top: 2px;
+        white-space: normal;
+        line-height: 1.2;
+    }
+
+    /* ── 5. Horizon Divider Transition ───────────────────────────────────── */
+    .hero-horizon-divider {
+        margin-top: 0;
+    }
+
+    .hero-horizon-divider svg {
+        height: 44px;
+    }
+
+    /* ── 6. Fixed Floating Dock Hidden on Mobile ─────────────────────────── */
+    .floating-deck {
+        display: none !important;
+    }
+
+    /* ── 7. Single-Column Sections Below Hero ────────────────────────────── */
+    .section-light,
+    .section-light-alt,
+    .section-dark {
+        padding-top: 52px !important;
+        padding-bottom: 52px !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    footer#contact {
+        padding-top: 52px !important;
+        padding-bottom: 36px !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    h2[id$="-heading"] {
+        font-size: 2rem !important;
+        line-height: 1.18;
+    }
+
+    .card-light,
+    .card-dark {
+        padding: 20px !important;
+    }
+
+    /* Minimum 44px tap targets for interactive links & buttons */
+    a[download],
+    a[href^="mailto:"],
+    a[href*="web.app"],
+    a[href*="facebook.com"],
+    a[href*="benilde.edu.ph"] {
+        min-height: 44px;
+    }
+}
+
+/* Enhancements for standard phones (390px to 767px) */
+@media (min-width: 390px) and (max-width: 767px) {
+    .hero-avatar-frame {
+        width: 235px;
+        height: 235px;
+    }
+    .hero-dot-grid-left {
+        left: calc(50% - 162px);
+    }
+    .hero-dot-grid-right {
+        right: calc(50% - 162px);
+    }
+    .competency-glass-card {
+        padding: 12px 10px;
+        gap: 10px;
+    }
+    .competency-icon-badge {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    .competency-glass-card h2 {
+        font-size: 0.875rem; /* 14px */
+    }
+    .hero-name-headline {
+        font-size: 2.75rem;
+    }
+}
+

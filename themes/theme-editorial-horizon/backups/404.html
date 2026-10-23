@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Warren Victor</title>
+    <meta name="description" content="The page you are looking for does not exist. Return to Warren Victor's professional portfolio.">
+    <meta name="theme-color" content="#153359">
+
+    <!-- Dynamic SVG Favicon: Elegant Navy Circular 'W.V.' Badge -->
+    <link rel="icon" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23153359' stroke='%2338bdf8' stroke-width='4'/%3E%3Ctext x='50' y='64' font-family='Playfair Display, serif' font-size='38' font-weight='bold' fill='%23ffffff' text-anchor='middle'%3EW.V.%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Variables for Navy-Blue Theme */
+        :root {
+            --color-bg-primary: #153359;
+            --color-bg-secondary: #0d223c;
+            --color-brand: #0ea5e9;
+            --color-brand-dark: #0284c7;
+            --color-text-primary: #f8fafc;
+            --color-text-secondary: #94a3b8;
+            --color-glass-bg: rgba(13, 34, 60, 0.85);
+            --color-glass-border: rgba(255, 255, 255, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-primary) 60%, #1e467a 100%);
+            background-attachment: fixed;
+            color: var(--color-text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .error-container {
+            text-align: center;
+            max-width: 560px;
+            background: var(--color-glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--color-glass-border);
+            border-radius: 24px;
+            padding: 64px 40px;
+            box-shadow: 0 12px 36px rgba(10, 24, 45, 0.35);
+        }
+
+        .error-code {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(80px, 15vw, 120px);
+            font-weight: 700;
+            color: var(--color-brand);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .error-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .error-message {
+            color: var(--color-text-secondary);
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .home-link {
+            display: inline-block;
+            background-color: var(--color-brand-dark);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 32px;
+            border-radius: 9999px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 16px rgba(14, 165, 233, 0.3);
+        }
+
+        .home-link:hover {
+            background-color: var(--color-brand);
+            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.45);
+            transform: translateY(-2px);
+        }
+
+        .home-link:focus-visible {
+            outline: 2px solid var(--color-brand);
+            outline-offset: 4px;
+        }
+    </style>
+</head>
+<body>
+    <main class="error-container" role="main">
+        <p class="error-code">404</p>
+        <h1 class="error-title">Page Not Found</h1>
+        <p class="error-message">
+            The page you're looking for doesn't exist or has been moved.
+            Let's get you back on track.
+        </p>
+        <a href="/" class="home-link">Back to Portfolio</a>
+    </main>
+</body>
+</html>
